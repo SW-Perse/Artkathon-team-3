@@ -13,14 +13,14 @@ https://www.poetryfoundation.org/
 ## The Team
 
 ### M1 AI
-Mame Yacine NDIAYE
-Imrane TITAOU LATIF
+- Mame Yacine NDIAYE
+- Imrane TITAOU LATIF
 
 ### M1 Data Engineer
-Sophie CAPRON
-Valentin FALQUET
-Yves Malick Jordan MAO
-Mama Aïssata SAKHO
+- Sophie CAPRON
+- Valentin FALQUET
+- Yves Malick Jordan MAO
+- Mama Aïssata SAKHO
 
 ---
 

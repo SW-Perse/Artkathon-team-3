@@ -62,6 +62,9 @@ htmlcov/
 Thumbs.db
 Desktop.ini
 
+# Output directory (generated images) - commented out to allow demo_samples
+# out/
+
 # Large datasets (optional - uncomment if you want to exclude)
 # data/PoemsDataset_cleaned.csv
 
