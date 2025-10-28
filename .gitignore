@@ -51,9 +51,6 @@ htmlcov/
 *~
 .DS_Store
 
-# Output directory (generated images)
-out/
-
 # Logs
 *.log
 
