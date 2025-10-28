@@ -24,35 +24,7 @@ https://www.poetryfoundation.org/
 
 ---
 
-## Quick Start
-
-### 1. Setup
-```powershell
-# Create virtual environment
-python -m venv venv
-venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### 2. Generate Art
-```powershell
-# Render all poems in dataset
-python pipeline.py
-
-# Test with 5 poems
-python pipeline.py --limit 5
-
-# Use different color scheme
-python pipeline.py --color-scheme wild --limit 10
-```
-
-**Output**: `out/` directory with PNG images organized by genre
-
----
-
-## Core Concept
+## Core concept
 
 ### Pipeline: Text → Vector → Image
 
@@ -63,9 +35,9 @@ python pipeline.py --color-scheme wild --limit 10
 
 ---
 
-## The 14D Embedding Vector
+## The 14D embedding vector
 
-### Vector Structure
+### Vector structure
 
 Each poem is vectorized into exactly 14 dimensions that capture its poetic structure:
 
@@ -86,7 +58,7 @@ Each poem is vectorized into exactly 14 dimensions that capture its poetic struc
 | **v[12]** |      Poet name diversity     |   unique letters   |           (reserved)           |
 | **v[13]** |         Genre/Emotion        |       0.0-1.0      |    **Color palette**           |
 
-### Genre → Color Mapping
+### Genre → Color mapping
 
 Dimension **v[13]** determines the color palette according to emotional genre:
 
@@ -99,7 +71,7 @@ Dimension **v[13]** determines the color palette according to emotional genre:
 | **Joy**             | 0.5 - 0.6 (center: 0.55)  | rainbow  | Full color spectrum          |
 | **Surprise**        | 0.6 - 0.7 (center: 0.65)  | cividis  | Blue-yellow                  |
 
-### Rendering Process
+### Rendering process
 
 1. **Grid construction**: Create an angle grid based on image size and cell_size
 2. **Flow generation**: Generate a Perlin noise field with multiple octaves
@@ -109,7 +81,7 @@ Dimension **v[13]** determines the color palette according to emotional genre:
    - Width tapers from thick to thin
    - Length is determined by the rhythm parameter
 
-### Flow Field Parameters
+### Flow field parameters
 
 | Parameter         | Formula             | Range     | Controls                             |
 |-------------------|---------------------|-----------|--------------------------------------|
@@ -120,7 +92,7 @@ Dimension **v[13]** determines the color palette according to emotional genre:
 | `quantize_steps`  | v[5] × 12           | 0-12      | Sharp angles (rhymes)                |
 | `swirl`           | v[6] × 0.3          | 0.0-0.3   | Spiral distortion                    |
 
-### Stroke Parameters
+### Stroke parameters
 
 | Parameter      | Formula                                 | Range         | Controls                |
 |----------------|-----------------------------------------|---------------|-------------------------|
@@ -134,7 +106,7 @@ Dimension **v[13]** determines the color palette according to emotional genre:
 
 ---
 
-## Color Schemes
+## Color schemes
 
 ### Expressive (Default)
 - **Palette axis**: Vertical (top to bottom)
@@ -165,7 +137,7 @@ Dimension **v[13]** determines the color palette according to emotional genre:
 
 ---
 
-## Quick Installation
+## Quick start
 
 ### Clone the GitHub Repo
 ```powershell
@@ -183,7 +155,7 @@ venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### Image Generation
+### Image generation
 ```powershell
 # Render all poems in dataset
 python pipeline.py
@@ -202,7 +174,7 @@ A diverse sample has been processed and rendered using all three color schemes t
 
 ## Tools
 
-### Main Pipeline (Batch Processing)
+### Main pipeline (Batch processing)
 
 ```powershell
 # Basic usage
@@ -225,15 +197,15 @@ python pipeline.py --output gallery --limit 20
 python pipeline.py --organize-by-genre         # Structure by genre folders
 ```
 
-### Individual Tools
+### Individual tools
 
-#### Render Specific Poems
+#### Render specific poems
 ```powershell
 python tools/render_specific_poems.py "The Raven" "Fire and Ice"
 python tools/render_specific_poems.py "Annabel Lee" --style sharp
 ```
 
-#### Render Random Samples
+#### Render random samples
 ```powershell
 python tools/render_random_samples.py --n 10
 python tools/render_random_samples.py --n 5 --seed 42 --color-scheme wild
@@ -241,9 +213,9 @@ python tools/render_random_samples.py --n 5 --seed 42 --color-scheme wild
 
 ---
 
-## Advanced Usage
+## Advanced usage
 
-### Batch Process Multiple Schemes
+### Batch process multiple schemes
 ```powershell
 # Generate complete galleries with each color scheme
 python pipeline.py --color-scheme expressive --output gallery_expressive
@@ -251,7 +223,7 @@ python pipeline.py --color-scheme very_smooth --output gallery_smooth
 python pipeline.py --color-scheme wild --output gallery_wild
 ```
 
-### Custom Vector Creation
+### Custom vector creation
 ```python
 from tools.simple_text_to_vectors import simple_text_to_vectors
 from tools.render_embedding import map_embedding_to_params
@@ -273,7 +245,7 @@ img.save('my_artwork.png')
 
 ---
 
-## Project Structure
+## Project structure
 
 ```
 Artkathon/
@@ -299,9 +271,9 @@ Artkathon/
 
 ---
 
-## Dataset Format
+## Dataset format
 
-### Option 1: Pre-computed Vectors (Recommended)
+### Option 1: Pre-computed vectors (Recommended)
 CSV with columns: `title`, `vector_14d`
 
 ```csv
@@ -310,7 +282,7 @@ title,vector_14d
 "Fire and Ice","[0.3, 0.9, 0.3, 0.6, 0.2, 0.5, 0.4, 0.3, 0.6, 0.8, 6.0, 0.4, 0.75, 0.25]"
 ```
 
-### Option 2: Raw Poems (Computed On-the-Fly)
+### Option 2: Raw poems (Computed on-the-fly)
 CSV/Excel with columns: `Title`, `Poem`, `Poet`, `Genre`
 
 ```csv
@@ -349,61 +321,6 @@ pip install -r requirements.txt
 
 ---
 
-## Advanced Usage
-
-### Batch Process Multiple Schemes
-```powershell
-# Generate complete galleries with each color scheme
-python pipeline.py --color-scheme expressive --output gallery_expressive
-python pipeline.py --color-scheme very_smooth --output gallery_smooth
-python pipeline.py --color-scheme wild --output gallery_wild
-```
-
-### Custom Vector Creation
-```python
-from tools.simple_text_to_vectors import simple_text_to_vectors
-from render_embedding import map_embedding_to_params
-from flow_field import render
-
-# Create custom vector
-vector = simple_text_to_vectors(
-    title="My Poem",
-    poem_text="Roses are red...",
-    poet="Anonymous",
-    genre="love"
-)
-
-# Render
-params = map_embedding_to_params(vector, color_scheme='expressive')
-img = render(params)
-img.save('my_artwork.png')
-```
-
-### Direct Parameter Control
-```python
-from flow_field import render
-
-params = {
-    'width': 3000,
-    'height': 3000,
-    'cell_size': 10,
-    'noise_scale': 6,
-    'octaves': 4,
-    'quantize_steps': 8,
-    'swirl': 0.2,
-    'density': 0.003,
-    'max_length': 600,
-    'color_start': (50, 50, 200),
-    'color_end': (200, 50, 50),
-    # ... see flow_field.py for all parameters
-}
-
-img = render(params)
-img.save('custom_art.png')
-```
-
----
-
 ## Contributing
 
 When modifying the code:
@@ -424,5 +341,3 @@ When modifying the code:
 - **simple_text_to_vectors.py**: Text analysis and vectorization
 
 ---
-
-
