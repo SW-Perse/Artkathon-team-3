@@ -168,6 +168,7 @@ python pipeline.py --color-scheme wild --limit 10
 ```
 
 **Output**: `out/` dossier contenant les images générées
+Un échantillon diversifié a été traité avec les 3 modes de colorisation à titre d'exempl, et peut être consulté dans le dossier `out/`.
 
 ---
 
@@ -244,7 +245,7 @@ img.save('mon_oeuvre.png')
 
 ---
 
-## 📁 Structure du projet
+## Structure du projet
 
 ```
 Artkathon/

@@ -24,7 +24,7 @@ https://www.poetryfoundation.org/
 
 ---
 
-## 📦 Quick Start
+## Quick Start
 
 ### 1. Setup
 ```powershell
@@ -196,6 +196,7 @@ python pipeline.py --color-scheme wild --limit 10
 ```
 
 **Output**: `out/` folder containing generated images
+A diverse sample has been processed and rendered using all three color schemes to be used as a demo, and can be found in the `out/` folder 
 
 ---
 
@@ -272,7 +273,7 @@ img.save('my_artwork.png')
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Artkathon/
@@ -348,7 +349,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🚀 Advanced Usage
+## Advanced Usage
 
 ### Batch Process Multiple Schemes
 ```powershell
@@ -403,7 +404,7 @@ img.save('custom_art.png')
 
 ---
 
-## 📝 Contributing
+## Contributing
 
 When modifying the code:
 
@@ -413,7 +414,7 @@ When modifying the code:
 
 ---
 
-## 🔗 Files Reference
+## Files Reference
 
 - **pipeline.py**: Master orchestrator for batch processing
 - **flow_field.py**: Core rendering engine (Perlin noise + stroke drawing)
