@@ -141,7 +141,7 @@ Dimension **v[13]** determines the color palette according to emotional genre:
 
 ### Clone the GitHub Repo
 ```powershell
-git clone https://github.com/your-username/Artkathon-team-3.git
+git clone https://github.com/SW-Perse/Artkathon-team-3.git
 cd Artkathon
 ```
 
